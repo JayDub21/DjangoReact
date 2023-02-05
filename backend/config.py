@@ -1,1 +1,1 @@
-SECRET_KEY = 'DjangoReactq4%)um^=)yx3h=374r-je6$&178i1d^td-w54lxba3_g!ltpr1JWofford'
+SECRET_KEY = 'DjangoReact92n%=19eo@68!$=vw+mo(plk(@+rz+(f5_2cb0gad&+x-&$dqsJWofford'
