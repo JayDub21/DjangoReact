@@ -1,3 +1,8 @@
-asgiref==3.6.0
-Django==4.1.6
-sqlparse==0.4.3
+# For Virtual Environment MGR pipenv
+certifi==2022.12.7
+distlib==0.3.6
+filelock==3.9.0
+pipenv==2023.2.4
+platformdirs==2.6.2
+virtualenv==20.17.1
+virtualenv-clone==0.5.7
