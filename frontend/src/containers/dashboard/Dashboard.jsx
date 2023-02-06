@@ -1,7 +1,7 @@
-import React, { useEffect } from "react";
-import { Redirect, Link } from 'react-router-dom';
+import React from "react";
+import { Redirect } from 'react-router-dom';
 // Redux
-import { connect } from 'react-redux';
+// import { connect } from 'react-redux';
 
 
 const Dashbaord = ({ isAuthenticated, user }) => {
@@ -58,11 +58,6 @@ const Dashbaord = ({ isAuthenticated, user }) => {
 
         );
 }
-const mapStateToProps = state => ({
-    isAuthenticated: state.auth.isAuthenticated,
-    user: state.auth.user,
-    tickets: state.tickets.tickets
 
-  });
 
-export default connect(mapStateToProps, {loadTickets, getTicketID, clearTicketID, clearViewTicket, clearValidUploads, clearVerifyPID, clearCreateTicket})(Dashbaord);
+export default Dashbaord;

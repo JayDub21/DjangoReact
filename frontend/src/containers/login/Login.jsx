@@ -1,23 +1,22 @@
 import React, { useState } from 'react';
 import { Link, Redirect } from 'react-router-dom';
-import { connect } from 'react-redux';
-import { login } from '../actions/auth';
+// import { connect } from 'react-redux';
 
 
 const Login = ({ login, isAuthenticated }) => {
     const [formData, setFormData] = useState({
-        email: '',
+        username: '',
         password: '' 
     });
 
-    const { email, password } = formData;
+    const { username, password } = formData;
 
     const onChange = e => setFormData({ ...formData, [e.target.name]: e.target.value });
 
     const onSubmit  = e => {
         e.preventDefault();
 
-        login(email, password);
+        login(username, password);
 
     };
 
@@ -34,8 +33,8 @@ const Login = ({ login, isAuthenticated }) => {
                     <form onSubmit={e => onSubmit(e)}>
 
                         <div className="form-floating mb-3">
-                        <input type="email" className="form-control" placeholder="email" id="floatingEmail" name="email" value={email} onChange={e => onChange(e)} required />
-                        <label htmlFor="floatingInput">Email address</label>
+                        <input type="username" className="form-control" placeholder="username" id="floatingusername" name="username" value={username} onChange={e => onChange(e)} required />
+                        <label htmlFor="floatingInput">username</label>
                         </div>
 
 
@@ -60,8 +59,4 @@ const Login = ({ login, isAuthenticated }) => {
     );
 };
 
-const mapStateToProps = state => ({
-    isAuthenticated: state.auth.isAuthenticated
-});
-
-export default connect(mapStateToProps, { login })(Login);
+export default Login;

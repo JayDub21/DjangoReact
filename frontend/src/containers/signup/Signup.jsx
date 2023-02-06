@@ -1,23 +1,19 @@
 import React, { useState } from "react";
-import { Redirect } from 'react-router-dom';
+import { Redirect, withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
-
-import { signup } from '../actions/auth';
-
-// const generator = require('generate-password');
+import PropTypes from "prop-types";
+import { signup } from "./SignupActions";
 
 const Signup = ({ signup, isAuthenticated }) => {
   const [accountCreated, setAccountCreated] = useState(false);
   const [formData, setFormData] = useState({
-    email: '',
-    first_name: '', 
-    last_name: '', 
+    username: '',
     password: '',
-    re_password: '',
+    re_password: ''
   });
 
 
-  const { email, first_name, last_name, password, re_password } = formData;
+  const { username, password, re_password } = formData;
 
   const onChange = e => setFormData({ ...formData, [e.target.name]: e.target.value});
 
@@ -25,7 +21,7 @@ const Signup = ({ signup, isAuthenticated }) => {
     e.preventDefault();
 
     if (password === re_password) {
-      signup(email, first_name, last_name, password, re_password );
+      signup( username, password );
       console.log(signup);
       setAccountCreated(true);
     } else {
@@ -43,45 +39,23 @@ const Signup = ({ signup, isAuthenticated }) => {
   return (
    <div className="container-fluid" id="acctAppForm">
       <br/>
-      <h2>Your Information:</h2>
+      <h2>Signup:</h2>
       <hr/><br/>
 
       <form onSubmit={e => onSubmit(e)}>
 
           <div className="row g-2">
 
-              {/*  First Name Field  */}
+              {/*  Username Field  */}
               <div className="col-md-6">
                 <div className="form-floating mb-3">
-                  <input type="text" className="form-control" id="officerFirst" placeholder="First Name*" name="first_name" value={first_name}
+                  <input type="text" className="form-control" placeholder="Username*" name="username" value={username}
                   onChange={e => onChange(e)} required/>
-                  <label htmlFor="floatingFirstName">First Name</label>
+                  <label htmlFor="floatingUsername">Username</label>
                 </div>
               </div>
-
-              {/* Last Name Field */}
-              <div className="col-md-6">
-                <div className="form-floating mb-3">
-                  <input type="text" className="form-control" id="officerLast" placeholder="Last Name*" name="last_name" value={last_name}
-                  onChange={e => onChange(e)} required/>
-                  <label htmlFor="floatingLastName">Last Name</label>
-                </div>
-              </div>
-
-            </div>
-
-
-          
-          <div className="row g-2">
-            {/* Email Field */}
-            <div className="col-md-9">
-            <div className="form-floating mb-3">
-                <input type="email" className="form-control" id="floatingEmail" placeholder="name@example.com*" name="email" value={email} onChange={e => onChange(e)} required/>
-                <label htmlFor="floatingInput">Email Address</label>
-              </div>
-            </div>
-
           </div>
+
 
           <div className="row g-2">
 
@@ -93,7 +67,10 @@ const Signup = ({ signup, isAuthenticated }) => {
                 <label htmlFor="floatingPassword">Password</label>
               </div>
             </div>
+          </div>
               
+          
+          <div className="row g-2">
                 
             {/* PASSWORD CONFIRMATION */}
             <div className="col-md-6">
@@ -142,8 +119,15 @@ const Signup = ({ signup, isAuthenticated }) => {
 );
   };
 
+  Signup.propTypes = {
+    signup: PropTypes.func.isRequired,
+    createUser: PropTypes.object.isRequired
+  };
+
   const mapStateToProps = state => ({
-    isAuthenticated: state.auth.isAuthenticated
+    createUser: state.createUser
   });
 
-export default connect(mapStateToProps, { signup })(Signup);
+  export default connect(mapStateToProps, {
+    signup
+  })(withRouter(Signup));

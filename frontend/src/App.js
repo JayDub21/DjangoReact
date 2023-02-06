@@ -1,46 +1,35 @@
-import './App.css';
-import React from "react";
-import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
-// Error toasts(messages)
+
+import React, { Component } from "react";
+import Root from "./Root";
+import { Route, Switch } from "react-router-dom";
+
 import { ToastContainer } from 'react-toastify';
 
-// Redux
-import { Provider } from 'react-redux';
-import store from './store';
-// Components
-import Layout from './hocs/Layout';
-import Footer from './components/Footer'
-import NotFound from './components/NotFound';
-// Containers
-import Dashboard from './containers/Dashboard';
-import Activate from './containers/Activate';
-import ConfirmResetPassword from './containers/ConfirmResetPassword';
-import Login from './containers/Login';
-import ResetPassword from './containers/ResetPassword';
-import Signup from './containers/Signup';
+import Home from "./containers/Home";
+import Signup from "./containers/signup/Signup";
+import Login from "./containers/login/Login";
+import Dashboard from "./containers/dashboard/Dashboard";
 
+import axios from "axios";
+axios.defaults.baseURL = "http://127.0.0.1:8000";
 
-
-
-const App = () => (
-    <Provider store={store}>
-        <Router>
-            <ToastContainer position="bottom-center" />
-            <Layout>
-                <Switch>
-                    <Route exact path='/' component={Dashboard} />
-                    <Route exact path='/pending-info' component={PendingInfo} />
-                    <Route exact path='/login' component={Login} />
-                    <Route exact path='/signup' component={Signup} />
-                    <Route exact path='/reset-password' component={ResetPassword} />
-                    <Route exact path='/password/reset/confirm/:uid/:token' component={ConfirmResetPassword} />
-                    <Route exact path='/activate/:uid/:token' component={Activate} />
-                    <Route component={NotFound} />
-                </Switch>
-                <Footer />
-            </Layout>
-        </Router>
-    </Provider>
-);
+class App extends Component {
+  render() {
+    return (
+      <div>
+        <Root> 
+        <ToastContainer position="bottom-center" />
+          <Switch>
+            <Route path="/signup" component={Signup} />
+            <Route path="/login" component={Login} />
+            <Route path="/dashboard" component={Dashboard} />
+            <Route exact path="/" component={Home} />
+            <Route path="*">Ups</Route>
+          </Switch>
+        </Root> 
+      </div>
+    );
+  }
+}
 
 export default App;
