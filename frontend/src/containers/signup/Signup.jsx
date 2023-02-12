@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { Redirect, withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
 import PropTypes from "prop-types";
-import { signup } from "./SignupActions";
+import { signup } from "../../actions/signup";
 
 const Signup = ({ signup, isAuthenticated }) => {
   const [accountCreated, setAccountCreated] = useState(false);

@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import { withRouter } from "react-router-dom";            
 import PropTypes from "prop-types";   
 
-import { login } from './LoginActions';
+import { login } from '../../actions/auth';
 
 
 const Login = ({ login }) => {
@@ -19,9 +19,7 @@ const Login = ({ login }) => {
 
     const onSubmit  = e => {
         e.preventDefault();
-
         login(username, password);
-
     };
 
     return (

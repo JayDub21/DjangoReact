@@ -6,8 +6,8 @@ import { applyMiddleware, legacy_createStore as createStore } from "redux";
 import { routerMiddleware, ConnectedRouter } from "connected-react-router";
 
 
-import rootReducer from "./Reducer";
-import { setCurrentUser, setToken } from "./containers/login/LoginActions";
+import rootReducer from "./reducers/Reducer";
+import { setCurrentUser, setToken } from "./actions/auth";
 import { isEmpty } from "./utils/Utils";
 
 const Root = ({ children, initialState = {} }) => {

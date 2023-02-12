@@ -1,8 +1,8 @@
 import axios from "axios";
 import { push } from "connected-react-router";
 import { toast } from "react-toastify";
-import { SET_TOKEN, SET_CURRENT_USER, UNSET_CURRENT_USER } from "./LoginTypes";
-import { setAxiosAuthToken, toastOnError } from "../../utils/Utils";
+import { SET_TOKEN, SET_CURRENT_USER, UNSET_CURRENT_USER } from "./types";
+import { setAxiosAuthToken, toastOnError } from "../utils/Utils";
 
 export const login = (userData, redirectTo) => dispatch => {
   axios

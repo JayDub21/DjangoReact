@@ -1,10 +1,12 @@
 import React, { Fragment, useState } from "react";
 import { Link, Redirect } from 'react-router-dom';
 import { connect } from 'react-redux';
-import { logout } from '../actions/auth';
+import { withRouter } from "react-router-dom";            
+import PropTypes from "prop-types";   
+import { logout } from '../actions/auth'
 
 
-const Navbar = ({ logout, isAuthenticated }) => {
+const Navbar = ({ logout, auth }) => {
     const [redirect, setRedirect] = useState(false);
 
     const logout_user = () => {
@@ -14,7 +16,7 @@ const Navbar = ({ logout, isAuthenticated }) => {
 
     const guestLinks = () => (
         <Fragment>
-                <li className="nav-item m-1 ssNavLink">
+                <li className="nav-item m-1">
                 <Link className="nav-link" to="/login">Login</Link>
                 </li> 
         </Fragment>
@@ -22,11 +24,11 @@ const Navbar = ({ logout, isAuthenticated }) => {
 
     const authLinks = () => (
         <Fragment>
-                <li className="nav-item m-1 ssNavLink">
+                <li className="nav-item m-1">
                 <Link className="nav-link" to="/">Dashboard</Link>
                 </li>
 
-                <li className="nav-item m-1 ssNavLink">
+                <li className="nav-item m-1">
                 <Link className="nav-link" to="/login" onClick={logout_user}>Logout</Link>
                 </li>
         </Fragment>
@@ -48,7 +50,7 @@ return (
                 <div className="collapse navbar-collapse">
                     <h1>DjangoReact</h1>
                     <ul className="navbar-nav ms-auto" id="navItems">
-                        {isAuthenticated ? authLinks() : guestLinks()}
+                        {auth.isAuthenticated ? authLinks() : guestLinks()}
                     </ul>
                 </div>
 
@@ -60,8 +62,15 @@ return (
     );
 };
 
-const mapStateToProps = state => ({
-    isAuthenticated: state.auth.isAuthenticated
-})
-
-export default connect(mapStateToProps, { logout })(Navbar);
+Navbar.propTypes = {
+    logout: PropTypes.func.isRequired,
+    auth: PropTypes.object.isRequired
+  };
+  
+  const mapStateToProps = state => ({
+    auth: state.auth
+  });
+  
+  export default connect(mapStateToProps, {
+    logout
+  })(withRouter(Navbar));

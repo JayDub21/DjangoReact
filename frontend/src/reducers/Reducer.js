@@ -2,8 +2,8 @@ import { combineReducers } from "redux";
 import { connectRouter } from "connected-react-router";
 
 // import new reducer
-import { signupReducer } from "./containers/signup/SignupReducers";
-import { loginReducer } from "./containers/login/LoginReducer";
+import { signupReducer } from "./signup";
+import { loginReducer } from "./auth";
 
 const createRootReducer = history =>
   combineReducers({

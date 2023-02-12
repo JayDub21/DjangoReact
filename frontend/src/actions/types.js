@@ -1,0 +1,9 @@
+// Signup Types
+export const CREATE_USER_SUBMITTED = "CREATE_USER_SUBMITTED";
+export const CREATE_USER_SUCCESS = "CREATE_USER_SUCCESS";
+export const CREATE_USER_ERROR = "CREATE_USER_ERROR";
+
+// Auth Types
+export const SET_TOKEN = "SET_TOKEN";
+export const SET_CURRENT_USER = "SET_CURRENT_USER";
+export const UNSET_CURRENT_USER = "UNSET_CURRENT_USER";
