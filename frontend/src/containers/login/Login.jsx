@@ -1,9 +1,13 @@
 import React, { useState } from 'react';
-import { Link, Redirect } from 'react-router-dom';
-// import { connect } from 'react-redux';
+import { Link } from 'react-router-dom';
+import { connect } from 'react-redux';
+import { withRouter } from "react-router-dom";            
+import PropTypes from "prop-types";   
+
+import { login } from './LoginActions';
 
 
-const Login = ({ login, isAuthenticated }) => {
+const Login = ({ login }) => {
     const [formData, setFormData] = useState({
         username: '',
         password: '' 
@@ -19,10 +23,6 @@ const Login = ({ login, isAuthenticated }) => {
         login(username, password);
 
     };
-
-    if (isAuthenticated) {
-        return <Redirect to='/' />
-    }
 
     return (
         <div className="container-fluid outerMargin">
@@ -59,4 +59,15 @@ const Login = ({ login, isAuthenticated }) => {
     );
 };
 
-export default Login;
+Login.propTypes = {
+    login: PropTypes.func.isRequired,
+    auth: PropTypes.object.isRequired
+  };
+
+const mapStateToProps = state => ({
+    auth: state.auth
+  });
+
+export default connect(mapStateToProps, {
+    login
+  })(withRouter(Login));
