@@ -8,18 +8,19 @@ import { login } from '../../actions/auth';
 
 
 const Login = ({ login }) => {
-    const [formData, setFormData] = useState({
+    const [userData, setUserData] = useState({
         username: '',
         password: '' 
     });
 
-    const { username, password } = formData;
+    const { username, password } = userData;
 
-    const onChange = e => setFormData({ ...formData, [e.target.name]: e.target.value });
+    const onChange = e => setUserData({ ...userData, [e.target.name]: e.target.value });
 
     const onSubmit  = e => {
         e.preventDefault();
-        login(username, password);
+        const redirectTo = '/dashboard'
+        login(userData, redirectTo);
     };
 
     return (
@@ -44,7 +45,6 @@ const Login = ({ login }) => {
 
                         <div className="col-12">
                         <button type="submit" className="btn btn-success m-1">Login</button>
-                        <Link className="btn btn-primary m-1" to='/reset-password'>Forgot Password</Link>
                         <Link className="btn btn-primary" to='/signup'>Create Account</Link>
                         </div>
 

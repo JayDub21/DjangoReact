@@ -22,7 +22,6 @@ const Signup = ({ signup, isAuthenticated }) => {
 
     if (password === re_password) {
       signup( username, password );
-      console.log(signup);
       setAccountCreated(true);
     } else {
       alert("Passwords Must Match")
@@ -93,7 +92,7 @@ const Signup = ({ signup, isAuthenticated }) => {
       <div className="row g-2 justify-content-center">
             <div className="col-sm-7">
               <div className="card">
-                  <div className="card-header text-white text-center" id="confidential">
+                  <div className="card-header text-white text-center" id="passwordRequirements">
                     <h5>Password Requirements:</h5>
                   </div>
                   <div className="card-body">

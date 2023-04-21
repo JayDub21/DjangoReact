@@ -1,7 +1,7 @@
 import React from "react";
 import { Redirect } from 'react-router-dom';
 // Redux
-// import { connect } from 'react-redux';
+import { connect } from 'react-redux';
 
 
 const Dashbaord = ({ isAuthenticated, user }) => {
@@ -18,11 +18,13 @@ const Dashbaord = ({ isAuthenticated, user }) => {
 
                 <div className="row">
 
+                        <div classname="col-sm-2"></div>
+
                         <div className="col-md-8" id="myAccount">
 
                             <div className="card text-center text-white" id="accountCard">
 
-                                <div className="card-header" id="my-account">
+                                <div className="card-header" id="accountHeader">
 
                                     <h4 className="card-title">My Account Information</h4>
 
@@ -35,13 +37,11 @@ const Dashbaord = ({ isAuthenticated, user }) => {
                                                 <tr className="h5">
                                                     <th className="pt-2 pb-3 pl-1">User</th>
                                                     <th className="pt-2 pb-3 pl-1">Email</th>
-                                                    <th className="pt-2 pb-3 pl-1">Last Login</th>
                                                 </tr>
 
                                                 <tr className="h6">
-                                                    <td className="pt-3 pb-3 pl-1">{user?.first_name} {user?.last_name}</td>
+                                                    <td className="pt-3 pb-3 pl-1">{user?.username}</td>
                                                     <td className="pt-3 pb-3 pl-1">{user?.email}</td>
-                                                    <td className="pt-3 pb-3 pl-1">{user?.last_login}</td>
                                                 </tr>
                                             </tbody>
                                         </table>
@@ -51,6 +51,8 @@ const Dashbaord = ({ isAuthenticated, user }) => {
 
                         </div>
 
+                        <div classname="col-sm-2"></div>
+
                 </div>
 
             </div>
@@ -58,6 +60,9 @@ const Dashbaord = ({ isAuthenticated, user }) => {
 
         );
 }
+const mapStateToProps = state => ({
+    isAuthenticated: state.auth.isAuthenticated,
+    user: state.auth.user
+});
 
-
-export default Dashbaord;
+export default connect(mapStateToProps)(Dashbaord);

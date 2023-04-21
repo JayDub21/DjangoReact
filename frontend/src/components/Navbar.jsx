@@ -25,7 +25,7 @@ const Navbar = ({ logout, auth }) => {
     const authLinks = () => (
         <Fragment>
                 <li className="nav-item m-1">
-                <Link className="nav-link" to="/">Dashboard</Link>
+                <Link className="nav-link" to="/dashboard">Dashboard</Link>
                 </li>
 
                 <li className="nav-item m-1">
@@ -53,7 +53,6 @@ return (
                         {auth.isAuthenticated ? authLinks() : guestLinks()}
                     </ul>
                 </div>
-
             </div>
         </nav>
 

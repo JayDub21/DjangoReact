@@ -1,24 +1,28 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
-import { Container } from "react-bootstrap";
 
-class Home extends Component {
-  render() {
-    return (
-      <Container>
-        <h1>Home</h1>
-        <p>
-          <Link to="/login/">Login</Link>
-        </p>
-        <p>
-          <Link to="/signup">Sign up</Link>
-        </p>
-        <p>
-          <Link to="/dashboard">Dashboard</Link>
-        </p>
-      </Container>
-    );
-  }
-}
 
-export default Home;
+const Login = () => {
+
+
+  return (
+      <div className="container-fluid outerMargin">
+          <div className="row">
+              <div className="col-md-5">
+                  <h2>Home</h2>
+                  <hr/>
+                      <div className="col-12">
+                      <Link className="btn btn-primary m-1" to='/login'>Login</Link>
+                      <Link className="btn btn-success" to='/signup'>SignUp</Link>
+                      </div>
+              </div>
+
+          </div>
+      
+      </div>
+  );
+};
+
+
+
+export default Login;
