@@ -18,14 +18,13 @@ SECRET_KEY = config.SECRET_KEY
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 
 CORS_ALLOWED_ORIGINS = [
     "http://localhost:3000",
     "http://127.0.0.1:3000",
-    "http://localhost:8000",
-    "http://127.0.0.1:8000"
 ]
+
 
 # Application definition
 
@@ -148,5 +147,5 @@ REST_FRAMEWORK = {
 
 # configure Djoser
 DJOSER = {
-    "USER_ID_FIELD": "username"
+    'USER_ID_FIELD': 'username',
 }
