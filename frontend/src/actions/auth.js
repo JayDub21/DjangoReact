@@ -17,7 +17,7 @@ export const login = (userData, redirectTo) => dispatch => {
       dispatch(unsetCurrentUser());
       toastOnError(error);
     });
-};
+  };
 
 export const getCurrentUser = redirectTo => dispatch => {
   axios
@@ -42,7 +42,6 @@ export const setCurrentUser = (user, redirectTo) => dispatch => {
     payload: user
   });
 
-  console.log("set user" + redirectTo);
   if (redirectTo !== "") {
     dispatch(push(redirectTo));
   }
